@@ -1,235 +1,419 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 定义包含所有书签分类和网站的数据结构
-    const bookmarksData = [
-        {
-            id: 'ai',
-            name: 'AI',
-            icon: 'fas fa-robot',
-            sites: [
-                { name: 'ChatGPT', url: 'https://chatgpt.com/', icon: 'fas fa-comments' },
-                { name: 'DeepSeek', url: 'https://chat.deepseek.com/', icon: 'fas fa-brain' },
-                { name: 'Kimi.ai', url: 'https://kimi.moonshot.cn/', icon: 'fas fa-lightbulb' },
-                { name: '豆包', url: 'https://www.doubao.com/chat/', icon: 'fas fa-comment-dots' },
-                { name: '智谱清言', url: 'https://chatglm.cn/', icon: 'fas fa-comment-alt' },
-                { name: '秘塔AI搜索', url: 'https://metaso.cn/', icon: 'fas fa-search' },
-                { name: 'LiblibAI', url: 'https://www.liblib.art/', icon: 'fas fa-paint-brush' },
-                { name: '可灵大模型', url: 'https://kling.kuaishou.com/', icon: 'fas fa-user-astronaut' },
-                { name: '即梦AI', url: 'https://jimeng.jianying.com/ai-tool/home/', icon: 'fas fa-film' },
-                { name: 'SiliconCloud', url: 'https://cloud.siliconflow.cn/models', icon: 'fas fa-cloud' },
-                { name: '扣子', url: 'https://www.coze.cn/space/7476110994276614156/develop', icon: 'fas fa-puzzle-piece' },
-                { name: 'Markmap', url: 'https://markmap.js.org/repl', icon: 'fas fa-sitemap' }
-            ]
-        },
-        {
-            id: 'design',
-            name: '设计与创作',
-            icon: 'fas fa-palette',
-            sites: [
-                { name: 'Canva可画', url: 'https://www.canva.cn/', icon: 'fas fa-paint-brush' },
-                { name: '火山引擎大模型实验室', url: 'https://www.volcengine.com/product/ai-app-lab', icon: 'fas fa-lab' },
-                { name: '火山方舟', url: 'https://www.volcengine.com/experience/ark', icon: 'fas fa-rocket' }
-            ]
-        },
-        {
-            id: 'game',
-            name: '网页游戏',
-            icon: 'fas fa-gamepad',
-            sites: [
-                { name: 'Kongregate', url: 'https://www.kongregate.com/', icon: 'fas fa-gamepad' },
-                { name: 'CrazyGames', url: 'https://www.crazygames.com/', icon: 'fas fa-dice' },
-                { name: 'HTML5 Games', url: 'https://html5games.com/', icon: 'fab fa-html5' },
-                { name: 'Kano网站', url: 'https://www.kano.ca/', icon: 'fas fa-smile' },
-                { name: 'Poki', url: 'https://poki.com/zh', icon: 'fas fa-gamepad' },
-                { name: 'Online Games.io', url: 'https://www.onlinegames.io/', icon: 'fas fa-gamepad' },
-                { name: 'Miniclip', url: 'https://www.miniclip.com/', icon: 'fas fa-play-circle' },
-                { name: 'Game Source Finder', url: 'https://gamesource-finder.online/', icon: 'fas fa-search' },
-                { name: '游戏资源下载工具', url: 'https://downloads.ink/', icon: 'fas fa-download' }
-            ]
-        },
-        {
-            id: 'seo',
-            name: '收集需求和关键词分析',
-            icon: 'fas fa-search',
-            sites: [
-                { name: 'Ahrefs Free SEO Tools', url: 'https://ahrefs.com/free-seo-tools', icon: 'fas fa-tools' },
-                { name: 'Semrush', url: 'https://www.semrush.com/', icon: 'fas fa-chart-line' },
-                { name: 'Google 趋势', url: 'https://trends.google.com/trends/', icon: 'fab fa-google' },
-                { name: 'AITDK', url: 'https://aitdk.com/', icon: 'fas fa-chart-bar' },
-                { name: '谷歌下拉词', url: 'https://www.searchsuggest.tips/?keyword=', icon: 'fas fa-list' },
-                { name: 'Top AI -Toolify', url: 'https://www.toolify.ai/Best-AI-Tools-revenue', icon: 'fas fa-crown' },
-                { name: 'AI Tool Requests', url: 'https://theresanaiforthat.com/requests', icon: 'fas fa-bullhorn' },
-                { name: 'Keyword Difficulty Checker', url: 'https://ahrefs.com/keyword-difficulty', icon: 'fas fa-mountain' },
-                { name: 'Similarweb', url: 'https://www.similarweb.com/', icon: 'fas fa-globe' }
-            ]
-        },
-        {
-            id: 'domains',
-            name: '域名相关',
-            icon: 'fas fa-globe-americas',
-            sites: [
-                { name: 'Instant Domain Search', url: 'https://instantdomainsearch.com/', icon: 'fas fa-search' },
-                { name: 'Lean Domain Search', url: 'https://leandomainsearch.com/', icon: 'fas fa-search-plus' },
-                { name: 'Query.Domains', url: 'https://query.domains/', icon: 'fas fa-list-alt' },
-                { name: 'Spaceship', url: 'https://www.spaceship.com/zh/', icon: 'fas fa-rocket' },
-                { name: '域名比价', url: 'https://tld-list.com/', icon: 'fas fa-tags' },
-                { name: 'Porkbun', url: 'https://porkbun.com/', icon: 'fas fa-shopping-cart' },
-                { name: 'Namecheap', url: 'https://www.namecheap.com/', icon: 'fas fa-shopping-basket' }
-            ]
-        },
-        {
-            id: 'hosting',
-            name: '代码和网站托管',
-            icon: 'fas fa-server',
-            sites: [
-                { name: 'Cloudflare', url: 'https://dash.cloudflare.com/login', icon: 'fas fa-cloud' },
-                { name: 'GitHub', url: 'https://github.com/', icon: 'fab fa-github' },
-                { name: 'Vercel', url: 'https://vercel.com/', icon: 'fas fa-bolt' }
-            ]
-        },
-        {
-            id: 'analytics',
-            name: '数据统计后台',
-            icon: 'fas fa-chart-line',
-            sites: [
-                { name: 'Google Analytics', url: 'https://analytics.google.com/', icon: 'fab fa-google' },
-                { name: 'Google Search Console', url: 'https://search.google.com/search-console', icon: 'fab fa-google' },
-                { name: '站长工具网站测速', url: 'https://ping.chinaz.com/', icon: 'fas fa-tachometer-alt' },
-                { name: 'Bing Webmaster Tools', url: 'https://www.bing.com/webmasters/about', icon: 'fab fa-microsoft' }
-            ]
-        },
-        {
-            id: 'templates',
-            name: '网站模板',
-            icon: 'fas fa-code',
-            sites: [
-                { name: 'Vercel Templates', url: 'https://vercel.com/templates', icon: 'fas fa-bolt' },
-                { name: 'Rin Blog Template', url: 'https://github.com/openRin/Rin', icon: 'fab fa-github' },
-                { name: 'Next.js Boilerplate', url: 'https://github.com/ixartz/Next-js-Boilerplate', icon: 'fab fa-react' },
-                { name: 'SaaS Boilerplate', url: 'https://github.com/ixartz/SaaS-Boilerplate', icon: 'fas fa-rocket' },
-                { name: 'NextJS Landing Page Template', url: 'https://github.com/ixartz/Next-JS-Landing-Page-Starter-Template', icon: 'fas fa-home' },
-                { name: 'Astro Boilerplate', url: 'https://github.com/ixartz/Astro-boilerplate', icon: 'fas fa-star' },
-                { name: 'Landing Page Boilerplate', url: 'https://github.com/weijunext/landing-page-boilerplate', icon: 'fas fa-paper-plane' },
-                { name: 'Viggle AI WebUI', url: 'https://github.com/ai-aigc-studio/Viggle-AI-WebUI', icon: 'fas fa-robot' },
-                { name: 'Next.js Blog Template', url: 'https://github.com/weijunext/new-blog', icon: 'fas fa-blog' },
-                { name: 'ProductHunt 截图工具', url: 'https://github.com/daimajia/huntscreens', icon: 'fas fa-camera' },
-                { name: 'Smart Excel AI', url: 'https://github.com/weijunext/smart-excel-ai', icon: 'fas fa-table' },
-                { name: 'NextJS VPS Example', url: 'https://github.com/ashleyrudland/nextjs_vps', icon: 'fas fa-server' },
-                { name: 'AI Change Hairstyle', url: 'https://github.com/Pwntus/change-hairstyle-ai', icon: 'fas fa-cut' },
-                { name: 'Green Screen Creator', url: 'https://github.com/replicate/green-screen-creator', icon: 'fas fa-video' },
-                { name: 'Open SaaS', url: 'https://github.com/wasp-lang/open-saas/', icon: 'fas fa-box-open' },
-                { name: 'JustShip SaaS', url: 'https://github.com/ocluf/justship', icon: 'fas fa-shipping-fast' },
-                { name: '免费资源导航模板', url: 'https://github.com/fre123-com/fre123-nav/', icon: 'fas fa-compass' },
-                { name: 'OSS Gallery', url: 'https://github.com/dubinc/oss-gallery', icon: 'fas fa-th-large' },
-                { name: 'WebStack导航模板', url: 'https://github.com/WebStackPage/WebStackPage.github.io', icon: 'fas fa-layer-group' },
-                { name: 'AI工具导航模板', url: 'https://github.com/6677-ai/tap4-ai-webui', icon: 'fas fa-sitemap' },
-                { name: 'GPTs商店', url: 'https://github.com/all-in-aigc/gpts-works', icon: 'fas fa-store' },
-                { name: 'UI Libs for Vue 3', url: 'https://github.com/ddahan/ui-libs', icon: 'fab fa-vuejs' },
-                { name: 'DokeyAI', url: 'https://dokeyai.com/', icon: 'fas fa-gem' }
-            ]
-        },
-        {
-            id: 'news',
-            name: '资讯网站',
-            icon: 'fas fa-newspaper',
-            sites: [
-                { name: 'YouTube', url: 'https://www.youtube.com/', icon: 'fab fa-youtube' },
-                { name: 'Facebook', url: 'https://www.facebook.com/', icon: 'fab fa-facebook' },
-                { name: 'Twitter/X', url: 'https://x.com/', icon: 'fab fa-twitter' },
-                { name: '谷歌搜索中心', url: 'https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=zh-cn', icon: 'fab fa-google' },
-                { name: 'Reddit 子社区', url: 'https://liberating-doll-b8a.notion.site/Reddit-1a8e8aed91b18021839ecba8b74e530b', icon: 'fab fa-reddit' },
-                { name: 'Ahrefs 热门网站排行', url: 'https://ahrefs.com/websites#trending', icon: 'fas fa-fire' },
-                { name: 'AI 视频工具列表', url: 'https://docs.google.com/spreadsheets/d/1QOdqq9KbjQj1JZO43vc1pir2rnEEsMUXzTDATrOCn2k/edit', icon: 'fas fa-video' }
-            ]
-        },
-        {
-            id: 'finance',
-            name: '生财',
-            icon: 'fas fa-money-bill-wave',
-            sites: [
-                { name: '生财有术网页版', url: 'https://scys.com/', icon: 'fas fa-money-check-alt' },
-                { name: 'Cursor-零基础做软件应用', url: 'https://scys.com/view/docx/YIvBdL38ConF89xdBvAckZBPn5e', icon: 'fas fa-code' },
-                { name: '生财有术·RPA', url: 'https://scys.com/activity/landing/3046?tabIndex=0', icon: 'fas fa-robot' },
-                { name: '生财有术·出海第一站', url: 'https://scys.com/activity/landing/3044?tabIndex=0', icon: 'fas fa-ship' },
-                { name: '生财有术·comfyUI-liblib', url: 'https://scys.com/activity/landing?id=4669&tabIndex=0', icon: 'fas fa-paint-brush' },
-                { name: '生财有术·AI编程', url: 'https://scys.com/activity/landing?id=3481&tabIndex=0', icon: 'fas fa-laptop-code' },
-                { name: '生财有术·ai绘画', url: 'https://scys.com/activity/landing?id=3043&tabIndex=0', icon: 'fas fa-palette' },
-                { name: '生财有术·Cursor编程', url: 'https://scys.com/activity/landing?id=4668&tabIndex=0', icon: 'fas fa-code' },
-                { name: 'DeepSeek追热点', url: 'https://scys.com/articleDetail/xq_topic/2858151281144121', icon: 'fas fa-fire' },
-                { name: 'DeepSeek快速生成图片', url: 'https://scys.com/articleDetail/xq_topic/5121828585248114', icon: 'fas fa-images' },
-                { name: '5分钟做个网站', url: 'https://articles.zsxq.com/id_4dus5o2w72rc.html', icon: 'fas fa-globe' },
-                { name: '生财有术·小绿书', url: 'https://scys.com/activity/landing?id=4659&tabIndex=0', icon: 'fas fa-book' },
-                { name: '小红书商单变现', url: 'https://articles.zsxq.com/id_nkst3ovqzl5p.html', icon: 'fas fa-comment-dollar' }
-            ]
-        }
-    ];
+    const bookmarksData = {
+        "AI": [
+            {
+                name: "ChatGPT",
+                url: "https://chat.openai.com/",
+                icon: "fa-robot",
+                description: "强大的AI聊天助手，由OpenAI开发，支持自然语言交互"
+            },
+            {
+                name: "Claude",
+                url: "https://claude.ai/",
+                icon: "fa-comment-dots",
+                description: "Anthropic开发的智能AI助手，擅长长文本处理和多轮对话"
+            },
+            {
+                name: "Gemini",
+                url: "https://gemini.google.com/",
+                icon: "fa-brain",
+                description: "Google研发的先进大语言模型，具有优秀的多模态能力"
+            },
+            {
+                name: "文心一言",
+                url: "https://yiyan.baidu.com/",
+                icon: "fa-comment",
+                description: "百度推出的对话式人工智能，擅长中文内容创作和回答"
+            },
+            {
+                name: "通义千问",
+                url: "https://qianwen.aliyun.com/",
+                icon: "fa-lightbulb",
+                description: "阿里云推出的AI大模型，具有丰富的知识和理解能力"
+            },
+            {
+                name: "Midjourney",
+                url: "https://www.midjourney.com/",
+                icon: "fa-image",
+                description: "顶级AI图像生成工具，可以通过文字描述创建高质量艺术作品"
+            },
+            {
+                name: "DALL-E",
+                url: "https://labs.openai.com/",
+                icon: "fa-paint-brush",
+                description: "OpenAI开发的AI图像生成模型，可将文本描述转换为创意图像"
+            },
+            {
+                name: "Stable Diffusion",
+                url: "https://stability.ai/",
+                icon: "fa-palette",
+                description: "开源的AI图像生成模型，可本地部署，支持文本到图像生成"
+            }
+        ],
+        "设计与创作": [
+            {
+                name: "Canva",
+                url: "https://www.canva.com/",
+                icon: "fa-pencil-ruler",
+                description: "流行的在线设计工具，提供模板和素材，易于使用的图形设计平台"
+            },
+            {
+                name: "Figma",
+                url: "https://www.figma.com/",
+                icon: "fa-object-group",
+                description: "专业的在线UI/UX设计工具，支持实时协作和原型制作"
+            },
+            {
+                name: "墨刀",
+                url: "https://modao.cc/",
+                icon: "fa-crop",
+                description: "国内领先的产品设计协作平台，支持原型、设计和交互测试"
+            },
+            {
+                name: "创客贴",
+                url: "https://www.chuangkit.com/",
+                icon: "fa-tags",
+                description: "简单易用的平面设计工具，提供海量模板和素材库"
+            },
+            {
+                name: "稿定设计",
+                url: "https://www.gaoding.com/",
+                icon: "fa-pen-fancy",
+                description: "专业的在线图片和视频编辑工具，拥有丰富的设计模板"
+            }
+        ],
+        "网页游戏": [
+            {
+                name: "2048",
+                url: "https://play2048.co/",
+                icon: "fa-th",
+                description: "经典数字合成游戏，通过滑动合并相同数字方块获得2048"
+            },
+            {
+                name: "Wordle",
+                url: "https://www.nytimes.com/games/wordle/",
+                icon: "fa-font",
+                description: "猜单词游戏，每天一个五字母单词，六次尝试机会"
+            },
+            {
+                name: "Agar.io",
+                url: "https://agar.io/",
+                icon: "fa-circle",
+                description: "多人在线吞噬游戏，控制小球吃掉其他玩家和食物不断变大"
+            },
+            {
+                name: "Slither.io",
+                url: "https://slither.io/",
+                icon: "fa-sort-amount-up",
+                description: "类似贪吃蛇的多人在线游戏，尝试让其他蛇撞到你身上"
+            }
+        ],
+        "SEO工具": [
+            {
+                name: "Ahrefs",
+                url: "https://ahrefs.com/",
+                icon: "fa-search",
+                description: "专业的SEO工具，提供关键词研究、竞争对手分析和反向链接审计"
+            },
+            {
+                name: "SEMrush",
+                url: "https://www.semrush.com/",
+                icon: "fa-chart-line",
+                description: "全套数字营销工具，可分析网站流量、研究关键词和追踪排名"
+            },
+            {
+                name: "Moz",
+                url: "https://moz.com/",
+                icon: "fa-globe",
+                description: "提供综合SEO研究和分析工具，包括站点审核和排名跟踪"
+            }
+        ],
+        "域名服务": [
+            {
+                name: "GoDaddy",
+                url: "https://www.godaddy.com/",
+                icon: "fa-server",
+                description: "全球最大的域名注册商之一，提供域名注册和网站托管服务"
+            },
+            {
+                name: "Namecheap",
+                url: "https://www.namecheap.com/",
+                icon: "fa-tag",
+                description: "价格实惠的域名注册和网站托管服务提供商，注重隐私保护"
+            },
+            {
+                name: "万网",
+                url: "https://wanwang.aliyun.com/",
+                icon: "fa-globe-asia",
+                description: "阿里云旗下的域名注册及管理服务，提供丰富的域名后缀选择"
+            }
+        ],
+        "主机服务": [
+            {
+                name: "阿里云",
+                url: "https://www.aliyun.com/",
+                icon: "fa-cloud",
+                description: "中国领先的云服务提供商，提供弹性计算、数据库和存储服务"
+            },
+            {
+                name: "腾讯云",
+                url: "https://cloud.tencent.com/",
+                icon: "fa-cloud-upload-alt",
+                description: "腾讯旗下云计算服务，提供全球部署和一站式解决方案"
+            },
+            {
+                name: "AWS",
+                url: "https://aws.amazon.com/",
+                icon: "fa-server",
+                description: "亚马逊云服务，全球最大的云计算平台之一，提供200多种云服务"
+            },
+            {
+                name: "Vercel",
+                url: "https://vercel.com/",
+                icon: "fa-code",
+                description: "专为前端开发优化的部署平台，支持React、Vue等框架的自动部署"
+            }
+        ],
+        "数据分析": [
+            {
+                name: "Google Analytics",
+                url: "https://analytics.google.com/",
+                icon: "fa-chart-pie",
+                description: "谷歌提供的网站流量分析工具，可跟踪和报告网站访问数据"
+            },
+            {
+                name: "百度统计",
+                url: "https://tongji.baidu.com/",
+                icon: "fa-chart-area",
+                description: "百度推出的免费网站流量分析工具，适合中国市场使用"
+            },
+            {
+                name: "CNZZ",
+                url: "https://www.umeng.com/",
+                icon: "fa-chart-bar",
+                description: "友盟+提供的网站统计服务，可分析用户行为和转化率"
+            }
+        ],
+        "学习资源": [
+            {
+                name: "Coursera",
+                url: "https://www.coursera.org/",
+                icon: "fa-graduation-cap",
+                description: "提供来自全球顶尖大学和机构的在线课程和学位项目"
+            },
+            {
+                name: "edX",
+                url: "https://www.edx.org/",
+                icon: "fa-book",
+                description: "哈佛和麻省理工创建的在线学习平台，提供大学水平的课程"
+            },
+            {
+                name: "中国大学MOOC",
+                url: "https://www.icourse163.org/",
+                icon: "fa-university",
+                description: "国内知名的大规模开放在线课程平台，提供中文优质教育资源"
+            },
+            {
+                name: "W3School",
+                url: "https://www.w3school.com.cn/",
+                icon: "fa-code",
+                description: "提供免费的网页技术教程，包括HTML、CSS、JavaScript等"
+            },
+            {
+                name: "MDN Web Docs",
+                url: "https://developer.mozilla.org/zh-CN/",
+                icon: "fa-file-code",
+                description: "Mozilla提供的网页技术文档，是Web开发的权威参考资源"
+            }
+        ]
+    };
 
     const categoriesContainer = document.getElementById('categories-container');
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
+    const navContainer = document.getElementById('nav-container');
 
-    // 渲染所有分类和网站
-    function renderBookmarks(data) {
+    // 渲染导航栏
+    function renderNav() {
+        navContainer.innerHTML = '';
+        
+        // 添加"全部"导航项
+        navContainer.innerHTML += `
+            <div class="nav-item" data-category="all">
+                <i class="fas fa-th-large"></i>全部
+            </div>
+        `;
+        
+        // 添加分类导航项
+        for (const category in bookmarksData) {
+            // 根据分类选择合适的图标
+            let icon = 'fa-folder';
+            switch(category) {
+                case 'AI':
+                    icon = 'fa-robot';
+                    break;
+                case '设计与创作':
+                    icon = 'fa-pencil-ruler';
+                    break;
+                case '网页游戏':
+                    icon = 'fa-gamepad';
+                    break;
+                case 'SEO工具':
+                    icon = 'fa-search';
+                    break;
+                case '域名服务':
+                    icon = 'fa-globe';
+                    break;
+                case '主机服务':
+                    icon = 'fa-server';
+                    break;
+                case '数据分析':
+                    icon = 'fa-chart-bar';
+                    break;
+                case '学习资源':
+                    icon = 'fa-graduation-cap';
+                    break;
+            }
+            
+            navContainer.innerHTML += `
+                <div class="nav-item" data-category="${category}">
+                    <i class="fas ${icon}"></i>${category}
+                </div>
+            `;
+        }
+        
+        // 为每个导航项添加点击事件
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                if (category === 'all') {
+                    renderAllBookmarks();
+                } else {
+                    renderCategoryBookmarks(category);
+                }
+                setActiveNavItem(category);
+            });
+        });
+    }
+
+    // 设置活动导航项
+    function setActiveNavItem(category) {
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            if (item.getAttribute('data-category') === category || 
+                (category === 'all' && item.getAttribute('data-category') === 'all')) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+
+    // 渲染特定分类的书签
+    function renderCategoryBookmarks(category) {
         categoriesContainer.innerHTML = '';
         
-        data.forEach(category => {
-            // 如果分类没有网站，则不显示
-            if (category.sites.length === 0) return;
-            
-            const categoryElement = document.createElement('div');
-            categoryElement.className = 'category';
-            categoryElement.id = `category-${category.id}`;
-            
-            const categoryHeader = document.createElement('div');
-            categoryHeader.className = 'category-header';
-            categoryHeader.innerHTML = `<i class="${category.icon}"></i> ${category.name}`;
-            
-            const siteList = document.createElement('ul');
-            siteList.className = 'site-list';
-            
-            category.sites.forEach(site => {
-                const siteItem = document.createElement('li');
-                siteItem.className = 'site-item';
-                
-                siteItem.innerHTML = `
-                    <a href="${site.url}" class="site-link" target="_blank" rel="noopener noreferrer">
-                        <div class="site-icon">
-                            <i class="${site.icon || 'fas fa-link'}"></i>
-                        </div>
-                        <span class="site-title">${site.name}</span>
-                    </a>
-                `;
-                
-                siteList.appendChild(siteItem);
-            });
-            
-            categoryElement.appendChild(categoryHeader);
-            categoryElement.appendChild(siteList);
-            categoriesContainer.appendChild(categoryElement);
+        const bookmarks = bookmarksData[category];
+        let bookmarksHTML = '';
+        
+        bookmarks.forEach(bookmark => {
+            bookmarksHTML += createBookmarkCard(bookmark, category);
         });
+        
+        categoriesContainer.innerHTML = bookmarksHTML;
+    }
+
+    // 渲染所有书签
+    function renderAllBookmarks() {
+        categoriesContainer.innerHTML = '';
+        
+        let allBookmarksHTML = '';
+        
+        for (const category in bookmarksData) {
+            bookmarksData[category].forEach(bookmark => {
+                allBookmarksHTML += createBookmarkCard(bookmark, category);
+            });
+        }
+        
+        categoriesContainer.innerHTML = allBookmarksHTML;
+    }
+
+    // 创建书签卡片HTML
+    function createBookmarkCard(bookmark, category) {
+        return `
+            <div class="site-card">
+                <a href="${bookmark.url}" target="_blank" rel="noopener noreferrer">
+                    <div class="site-card-category">${category}</div>
+                    <div class="site-card-header">
+                        <div class="site-card-icon">
+                            <i class="fas ${bookmark.icon}"></i>
+                        </div>
+                        <h3 class="site-card-title">${bookmark.name}</h3>
+                    </div>
+                    <div class="site-card-description">${bookmark.description}</div>
+                </a>
+            </div>
+        `;
     }
 
     // 搜索功能
     function searchBookmarks(keyword) {
         if (!keyword.trim()) {
-            renderBookmarks(bookmarksData);
+            // 恢复默认显示
+            const activeCategory = document.querySelector('.nav-item.active');
+            if (activeCategory) {
+                showCategoryBookmarks(activeCategory.dataset.category);
+            } else if (document.querySelector('.nav-item')) {
+                document.querySelector('.nav-item').classList.add('active');
+                showCategoryBookmarks(Object.keys(bookmarksData)[0]);
+            }
             return;
         }
         
         keyword = keyword.toLowerCase();
+        categoriesContainer.innerHTML = '';
         
-        const filteredData = bookmarksData.map(category => {
-            const filteredSites = category.sites.filter(site => 
+        // 搜索所有分类中的网站
+        let matchedBookmarks = [];
+        
+        for (const category in bookmarksData) {
+            const filteredSites = bookmarksData[category].filter(site => 
                 site.name.toLowerCase().includes(keyword) || 
+                site.description.toLowerCase().includes(keyword) ||
                 site.url.toLowerCase().includes(keyword)
             );
             
-            return {
-                ...category,
-                sites: filteredSites
-            };
-        });
+            filteredSites.forEach(site => {
+                matchedBookmarks.push({
+                    bookmark: site,
+                    category
+                });
+            });
+        }
         
-        renderBookmarks(filteredData);
+        // 渲染搜索结果
+        let searchResultsHTML = '';
+        
+        if (matchedBookmarks.length > 0) {
+            matchedBookmarks.forEach(match => {
+                searchResultsHTML += createBookmarkCard(match.bookmark, match.category);
+            });
+        } else {
+            searchResultsHTML = `
+                <div class="no-results">
+                    <p>没有找到与 "${keyword}" 相关的书签。</p>
+                </div>
+            `;
+        }
+        
+        categoriesContainer.innerHTML = searchResultsHTML;
+        
+        // 取消导航栏的选中状态
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('active');
+        });
     }
 
     // 绑定搜索事件
@@ -243,6 +427,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // 初始渲染
-    renderBookmarks(bookmarksData);
+    // 初始化
+    renderNav();
 }); 
